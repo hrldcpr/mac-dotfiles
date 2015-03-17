@@ -4,8 +4,11 @@
 
 ;;; Code:
 
-(require 'cask "/usr/local/share/emacs/site-lisp/cask.el")
-(cask-initialize)
+(let ((cask (if (string-equal system-type "darwin")
+		"/usr/local/share/emacs/site-lisp/cask.el"
+	      "~/.cask/cask.el")))
+  (require 'cask cask)
+  (cask-initialize))
 
 (require 'flycheck)
 (flycheck-add-next-checker 'python-flake8 '(warning . python-pylint))
