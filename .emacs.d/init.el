@@ -4,6 +4,9 @@
 
 ;;; Code:
 
+; http://www.emacswiki.org/emacs/NoTabs
+(setq-default indent-tabs-mode nil)
+
 (let ((cask (if (string-equal system-type "darwin")
 		"/usr/local/share/emacs/site-lisp/cask.el"
 	      "~/.cask/cask.el")))
