@@ -10,6 +10,8 @@
   (require 'cask cask)
   (cask-initialize))
 
+(add-hook 'haskell-mode-hook 'haskell-indentation-mode)
+
 (require 'flycheck)
 (flycheck-add-next-checker 'python-flake8 '(warning . python-pylint))
 
