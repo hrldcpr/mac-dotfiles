@@ -4,6 +4,11 @@
 
 ;;; Code:
 
+(require 'cask (if (string-equal system-type "darwin")
+                   "/usr/local/share/emacs/site-lisp/cask.el"
+                 "~/.cask/cask.el"))
+(cask-initialize)
+
 ; http://www.emacswiki.org/emacs/NoTabs
 (setq-default indent-tabs-mode nil)
 
@@ -12,12 +17,6 @@
 
 ; http://emacswiki.org/emacs/DeletingWhitespace
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
-
-(let ((cask (if (string-equal system-type "darwin")
-		"/usr/local/share/emacs/site-lisp/cask.el"
-	      "~/.cask/cask.el")))
-  (require 'cask cask)
-  (cask-initialize))
 
 (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
 
