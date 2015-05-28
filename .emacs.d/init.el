@@ -8,7 +8,7 @@
 (setq-default indent-tabs-mode nil)
 
 ; http://emacswiki.org/emacs/ShowWhiteSpace
-(setq-default show-trailing-whitespace 't)
+(setq-default show-trailing-whitespace t)
 
 ; http://emacswiki.org/emacs/DeletingWhitespace
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
