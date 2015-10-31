@@ -4,9 +4,13 @@
 
 ;;; Code:
 
-(require 'cask (if (string-equal system-type "darwin")
-                   "/usr/local/share/emacs/site-lisp/cask.el"
-                 "~/.cask/cask.el"))
+
+(let ((default-directory (if (string-equal system-type "darwin")
+                             "/usr/local/share/emacs/site-lisp/"
+                           "~/.cask/")))
+      (normal-top-level-add-subdirs-to-load-path))
+
+(require 'cask)
 (cask-initialize)
 
 ; http://www.emacswiki.org/emacs/NoTabs
