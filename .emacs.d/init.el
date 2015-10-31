@@ -15,6 +15,7 @@
 
 ; http://www.emacswiki.org/emacs/NoTabs
 (setq-default indent-tabs-mode nil)
+(setq js-indent-level 2)
 
 ; http://emacswiki.org/emacs/ShowWhiteSpace
 (setq-default show-trailing-whitespace t)
