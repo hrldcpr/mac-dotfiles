@@ -1,0 +1,1 @@
+set -x PATH $HOME/.cask/bin $PATH
