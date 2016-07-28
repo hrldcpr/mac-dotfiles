@@ -17,13 +17,13 @@ function fish_prompt --description 'Write out the prompt'
 				commandline -f repaint ^/dev/null
 			end
 		end
-		
+
 		function __fish_repaint_host --on-variable fish_color_host --description "Event handler, repaint when fish_color_host changes"
 			if status --is-interactive
 				commandline -f repaint ^/dev/null
 			end
 		end
-		
+
 		function __fish_repaint_status --on-variable fish_color_status --description "Event handler; repaint when fish_color_status changes"
 			if status --is-interactive
 				commandline -f repaint ^/dev/null
@@ -65,27 +65,5 @@ function fish_prompt --description 'Write out the prompt'
 		set prompt_status ' ' (set_color $fish_color_status) "[$last_status]" "$normal"
 	end
 
-	set -l mode_str
-	switch "$fish_key_bindings"
-	case '*_vi_*' '*_vi'
-		# possibly fish_vi_key_bindings, or custom key bindings
-		# that includes the name "vi"
-		set mode_str (
-			echo -n " "
-			switch $fish_bind_mode
-			case default
-				set_color --bold --background red white
-				echo -n "[N]"
-			case insert
-				set_color --bold green
-				echo -n "[I]"
-			case visual
-				set_color --bold magenta
-				echo -n "[V]"
-			end
-			set_color normal
-		)
-	end
-
-	echo -n -s (set_color $fish_color_user) "$USER" $normal @ (set_color $fish_color_host) "$__fish_prompt_hostname" $normal ' ' (set_color $color_cwd) (prompt_pwd) $normal (__fish_git_prompt) $normal $prompt_status "$mode_str" "> "
+	echo -n -s (set_color $color_cwd) (prompt_pwd) $normal (__fish_vcs_prompt) $normal $prompt_status "> "
 end
