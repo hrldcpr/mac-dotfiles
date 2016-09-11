@@ -44,6 +44,7 @@ values."
      javascript
      purescript
      python
+     react
      rust
      scala
      shell-scripts
