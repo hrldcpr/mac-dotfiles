@@ -267,6 +267,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
    web-mode-code-indent-offset 2
    web-mode-attr-indent-offset 2
    )
+
+  (add-to-list 'magic-mode-alist '("import React.* from 'react'" . react-mode))
   )
 
 (defun dotspacemacs/user-config ()
