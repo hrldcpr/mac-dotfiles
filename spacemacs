@@ -268,8 +268,11 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (global-hl-line-mode -1) ; Disable current line highlight
   (xterm-mouse-mode -1) ; Disable mouse integration
-  (global-set-key (kbd "C-c RET") 'proof-goto-point)
+
   (setq js2-basic-offset 2)
+
+  (global-set-key (kbd "C-c RET") 'proof-goto-point)
+  (global-set-key (kbd "C-x g") 'magit-status)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
