@@ -257,6 +257,16 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
+  (setq-default
+   ;; js2-mode
+   js2-basic-offset 2
+   ;; web-mode
+   css-indent-offset 2
+   web-mode-markup-indent-offset 2
+   web-mode-css-indent-offset 2
+   web-mode-code-indent-offset 2
+   web-mode-attr-indent-offset 2
+   )
   )
 
 (defun dotspacemacs/user-config ()
@@ -268,8 +278,6 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (global-hl-line-mode -1) ; Disable current line highlight
   (xterm-mouse-mode -1) ; Disable mouse integration
-
-  (setq js2-basic-offset 2)
 
   (global-set-key (kbd "C-c RET") 'proof-goto-point)
   (global-set-key (kbd "C-x g") 'magit-status)
