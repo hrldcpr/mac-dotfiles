@@ -311,6 +311,7 @@ executes.
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
   (setq-default
+   vc-follow-symlinks t
    ;; js2-mode
    js2-basic-offset 2
    ;; web-mode
