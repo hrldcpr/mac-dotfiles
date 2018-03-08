@@ -328,6 +328,8 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
+
+  ; when emacs is invoked on a specific file (`emacs blah.js`) it seems like settings need to be here instead of user-config :'/
   (setq-default
    vc-follow-symlinks t
    ;; js2-mode
