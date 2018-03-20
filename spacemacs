@@ -365,10 +365,10 @@ you should place your code here."
 
   (add-hook 'js2-mode-hook 'add-node-modules-path)
   (add-hook 'js2-mode-hook 'prettier-js-mode)
+  (add-hook 'json-mode-hook 'add-node-modules-path)
+  (add-hook 'json-mode-hook 'prettier-js-mode)
   (add-hook 'typescript-mode-hook 'add-node-modules-path)
   (add-hook 'typescript-mode-hook 'prettier-js-mode)
-  (add-hook 'web-mode-hook 'add-node-modules-path)
-  (add-hook 'web-mode-hook 'prettier-js-mode)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
