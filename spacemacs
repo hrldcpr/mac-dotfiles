@@ -363,6 +363,8 @@ you should place your code here."
   (global-set-key (kbd "C-c RET") 'proof-goto-point)
   (global-set-key (kbd "C-x g") 'magit-status)
 
+  (add-hook 'css-mode-hook 'add-node-modules-path)
+  (add-hook 'css-mode-hook 'prettier-js-mode)
   (add-hook 'js2-mode-hook 'add-node-modules-path)
   (add-hook 'js2-mode-hook 'prettier-js-mode)
   (add-hook 'json-mode-hook 'add-node-modules-path)
