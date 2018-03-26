@@ -87,6 +87,7 @@ values."
    dotspacemacs-excluded-packages
    '(
      smartparens
+     winum
      )
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
@@ -362,6 +363,7 @@ you should place your code here."
 
   (global-set-key (kbd "C-c RET") 'proof-goto-point)
   (global-set-key (kbd "C-x g") 'magit-status)
+  (global-set-key (kbd "M-5") 'query-replace-regexp)
 
   (dolist (hook '(css-mode-hook js2-mode-hook json-mode-hook react-mode-hook typescript-mode-hook))
     (add-hook hook 'add-node-modules-path)
