@@ -363,14 +363,10 @@ you should place your code here."
   (global-set-key (kbd "C-c RET") 'proof-goto-point)
   (global-set-key (kbd "C-x g") 'magit-status)
 
-  (add-hook 'css-mode-hook 'add-node-modules-path)
-  (add-hook 'css-mode-hook 'prettier-js-mode)
-  (add-hook 'js2-mode-hook 'add-node-modules-path)
-  (add-hook 'js2-mode-hook 'prettier-js-mode)
-  (add-hook 'json-mode-hook 'add-node-modules-path)
-  (add-hook 'json-mode-hook 'prettier-js-mode)
-  (add-hook 'typescript-mode-hook 'add-node-modules-path)
-  (add-hook 'typescript-mode-hook 'prettier-js-mode)
+  (dolist (hook '(css-mode-hook js2-mode-hook json-mode-hook react-mode-hook typescript-mode-hook))
+    (add-hook hook 'add-node-modules-path)
+    (add-hook hook 'prettier-js-mode)
+    )
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
