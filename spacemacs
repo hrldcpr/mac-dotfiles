@@ -369,6 +369,10 @@ you should place your code here."
     (add-hook hook 'add-node-modules-path)
     (add-hook hook 'prettier-js-mode)
     )
+  ;; can't use web-mode-hook for jsx and tsx because it also matches html :'( so we match suffix instead:
+  (add-hook 'find-file-hook
+            (lambda () (when (string-match-p "^\\(j\\|t\\)sx\\'" (file-name-extension buffer-file-name))
+                         (add-node-modules-path) (prettier-js-mode))))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
