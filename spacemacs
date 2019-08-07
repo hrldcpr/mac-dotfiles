@@ -37,8 +37,8 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      helm
-     auto-completion
-     better-defaults
+     ;; auto-completion
+     ;; better-defaults
      emacs-lisp
      ;; git
      markdown
@@ -47,29 +47,14 @@ values."
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
      ;; spell-checking
-     syntax-checking
-     (version-control :variables
-                      version-control-diff-tool 'diff-hl
-                      version-control-global-margin t)
+     ;; syntax-checking
+     ;; version-control
 
-     csv
-     docker
-     elm
-     haskell
      html
-     ;; idris
+     java
      javascript
-     nginx
-     purescript
-     (python :variables
-             python-enable-yapf-format-on-save t)
-     react
-     ;; rust
-     scala
-     shell-scripts
-     sql
+     python
      typescript
-     yaml
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -78,18 +63,12 @@ values."
    dotspacemacs-additional-packages
    '(
      add-node-modules-path
-     ;; ess
-     ;; groovy-mode
      prettier-js
      )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages
-   '(
-     smartparens
-     winum
-     )
+   dotspacemacs-excluded-packages '()
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
    ;; `used-only' installs only explicitly used packages and uninstall any
@@ -321,7 +300,7 @@ values."
    ;; `trailing' to delete only the whitespace at end of lines, `changed'to
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
-   dotspacemacs-whitespace-cleanup 'trailing
+   dotspacemacs-whitespace-cleanup nil
    ))
 
 (defun dotspacemacs/user-init ()
@@ -331,24 +310,6 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
-
-  ; when emacs is invoked on a specific file (`emacs blah.js`) it seems like settings need to be here instead of user-config :'/
-  (setq-default
-   vc-follow-symlinks t
-   ;; js2-mode
-   js2-basic-offset 2
-   ;; web-mode
-   css-indent-offset 2
-   web-mode-markup-indent-offset 2
-   web-mode-css-indent-offset 2
-   web-mode-code-indent-offset 2
-   web-mode-attr-indent-offset 2
-   ;; json-mode
-   js-indent-level 2
-
-   groovy-indent-offset 2
-   typescript-indent-level 2
-   )
   )
 
 (defun dotspacemacs/user-config ()
@@ -358,23 +319,21 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-  (ido-mode -1) ; https://github.com/syl20bnr/spacemacs/issues/11640
-  (global-hl-line-mode -1) ; Disable current line highlight
-  (xterm-mouse-mode -1) ; Disable mouse integration
-  (diff-hl-flydiff-mode)
-
-  (global-set-key (kbd "C-c RET") 'proof-goto-point)
-  (global-set-key (kbd "C-x g") 'magit-status)
-  (global-set-key (kbd "M-5") 'query-replace-regexp)
 
   (dolist (hook '(css-mode-hook js2-mode-hook json-mode-hook react-mode-hook typescript-mode-hook))
     (add-hook hook 'add-node-modules-path)
     (add-hook hook 'prettier-js-mode)
     )
-  ;; can't use web-mode-hook for jsx and tsx because it also matches html :'( so we match suffix instead:
+  ;; can't use web-mode-hook for jsx and tsx because it also matches html :'(
+  ;; so we match suffix instead:
   (add-hook 'find-file-hook
             (lambda () (when (string-match-p "^\\(j\\|t\\)sx\\'" (file-name-extension buffer-file-name))
                          (add-node-modules-path) (prettier-js-mode))))
+
+  (setq
+   typescript-indent-level 2
+   web-mode-markup-indent-offset 2  ; html
+   )
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -386,7 +345,7 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (let-alist add-node-modules-path tide typescript-mode prettier-js csv-mode ess-smart-equals ess-R-data-view ctable ess julia-mode groovy-mode winum unfill fuzzy nginx-mode sql-indent git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter diff-hl helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-hoogle helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag ace-jump-helm-line yapfify yaml-mode web-mode web-beautify toml-mode tagedit smeargle slim-mode scss-mode sass-mode racer pyvenv pytest pyenv-mode py-isort pug-mode psci purescript-mode psc-ide pip-requirements orgit org noflet mwim mmm-mode markdown-toc markdown-mode magit-gitflow livid-mode skewer-mode simple-httpd live-py-mode less-css-mode js2-refactor multiple-cursors js2-mode js-doc intero insert-shebang idris-mode prop-menu hy-mode hlint-refactor hindent haskell-snippets haml-mode gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md flycheck-rust seq flycheck-pos-tip pos-tip flycheck-haskell flycheck-elm flycheck fish-mode evil-magit magit git-commit with-editor ensime sbt-mode scala-mode emmet-mode elm-mode dockerfile-mode docker json-mode tablist magit-popup docker-tramp json-snatcher json-reformat cython-mode company-web web-completion-data company-tern dash-functional tern company-statistics company-shell company-ghci company-ghc ghc haskell-mode company-cabal company-anaconda company coffee-mode cmm-mode cargo rust-mode auto-yasnippet yasnippet anaconda-mode pythonic ac-ispell auto-complete ws-butler window-numbering which-key wgrep volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline smex restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint ivy-hydra info+ indent-guide ido-vertical-mode hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-make helm helm-core google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump popup f s diminish define-word counsel-projectile projectile pkg-info epl counsel swiper ivy column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed dash async aggressive-indent adaptive-wrap ace-window ace-link avy quelpa package-build spacemacs-theme))))
+    (add-node-modules-path prettier-js yapfify web-mode web-beautify tide typescript-mode flycheck tern tagedit slim-mode scss-mode sass-mode pyvenv pytest pyenv-mode py-isort pug-mode pip-requirements mmm-mode markdown-toc markdown-mode livid-mode skewer-mode simple-httpd live-py-mode json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc hy-mode dash-functional helm-pydoc helm-css-scss haml-mode gh-md emmet-mode eclim yasnippet cython-mode coffee-mode anaconda-mode pythonic ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
