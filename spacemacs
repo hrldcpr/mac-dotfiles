@@ -322,15 +322,18 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
-  (dolist (hook '(css-mode-hook js2-mode-hook json-mode-hook react-mode-hook typescript-mode-hook))
+  (dolist (hook '(
+                  css-mode-hook
+                  js2-mode-hook
+                  json-mode-hook
+                  react-mode-hook
+                  typescript-mode-hook
+                  web-mode-hook  ; html, jsx, tsx
+                  yaml-mode-hook
+                  ))
     (add-hook hook 'add-node-modules-path)
     (add-hook hook 'prettier-js-mode)
     )
-  ;; can't use web-mode-hook for jsx and tsx because it also matches html :'(
-  ;; so we match suffix instead:
-  (add-hook 'find-file-hook
-            (lambda () (when (string-match-p "^\\(j\\|t\\)sx\\'" (file-name-extension buffer-file-name))
-                         (add-node-modules-path) (prettier-js-mode))))
 
   (diff-hl-flydiff-mode)
 
