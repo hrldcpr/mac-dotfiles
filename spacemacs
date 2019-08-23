@@ -322,7 +322,15 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
+  (diff-hl-flydiff-mode)
+
   (xterm-mouse-mode -1)
+
+  (setq
+   js-indent-level 2  ; json
+   typescript-indent-level 2
+   web-mode-markup-indent-offset 2  ; html
+   )
 
   (dolist (hook '(
                   css-mode-hook
@@ -336,14 +344,6 @@ you should place your code here."
     (add-hook hook 'add-node-modules-path)
     (add-hook hook 'prettier-js-mode)
     )
-
-  (diff-hl-flydiff-mode)
-
-  (setq
-   js-indent-level 2  ; json
-   typescript-indent-level 2
-   web-mode-markup-indent-offset 2  ; html
-   )
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
