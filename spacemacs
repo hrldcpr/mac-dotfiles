@@ -330,6 +330,7 @@ you should place your code here."
   (xterm-mouse-mode -1)
 
   (setq
+   css-indent-offset 2
    js-indent-level 2  ; json
    typescript-indent-level 2
    web-mode-markup-indent-offset 2  ; html
