@@ -74,6 +74,7 @@ values."
    ;; A list of packages that will not be installed and loaded.
    dotspacemacs-excluded-packages
    '(
+     company-tern ;; erroneously required by javascript layer as of 2020-10-25
      smartparens
      )
    ;; Defines the behaviour of Spacemacs when installing packages.
