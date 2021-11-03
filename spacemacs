@@ -54,7 +54,7 @@ This function should only modify configuration layer settings."
      syntax-checking
      (version-control :variables
                       version-control-global-margin t)
-     treemacs
+     ;; treemacs
 
      html
      java
