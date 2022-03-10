@@ -60,7 +60,9 @@ This function should only modify configuration layer settings."
      java
      javascript
      prettier
-     python
+     (python :variables
+             python-formatter 'black
+             python-format-on-save t)
      ruby
      shell-scripts
      sql
