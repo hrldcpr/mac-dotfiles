@@ -1,4 +1,4 @@
-status --is-interactive; and source (rbenv init -|psub)
+status --is-interactive; and source (rbenv init - | psub)
 
 pyenv init - | source
 
