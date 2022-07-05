@@ -56,6 +56,7 @@ This function should only modify configuration layer settings."
                       version-control-global-margin t)
      ;; treemacs
 
+     docker
      html
      java
      javascript
