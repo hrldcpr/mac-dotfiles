@@ -11,3 +11,5 @@
 	diffFilter = diff-so-fancy --patch
 [alias]
 	lg = log --all --color --graph --pretty=format:'%Cred%h%Creset %C(yellow)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --abbrev-commit
+[init]
+	defaultBranch = main
